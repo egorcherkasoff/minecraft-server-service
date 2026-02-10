@@ -1,0 +1,20 @@
+# Minecraft данные
+data/
+*.dat
+*.dat_old
+*.mca
+session.lock
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Логи
+*.log
+
+# Операционные системы
+.DS_Store
+Thumbs.db

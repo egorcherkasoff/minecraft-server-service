@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  minecraft-server:
+    image: rdall96/minecraft-server:1.21.11-fabric_latest
+    container_name: minecraft-fabric-server
+    restart: unless-stopped
+    environment:
+      # Тип сервера
+      TYPE: FABRIC
+
+      # Название сервера
+      SERVER_NAME: Minecraft Fabric Server
+
+      # Порт сервера (внутри контейнера)
+      SERVER_PORT: 25565
+
+      # Уровень сложности (peaceful, easy, normal, hard)
+      DIFFICULTY: normal
+
+      # Режим игры (survival, creative, adventure, spectator)
+      GAMEMODE: survival
+
+      # Максимальное количество игроков
+      MAX_PLAYERS: 20
+
+      # Мир (seed)
+      SEED: ""
+
+      # Уровень генерации мира
+      LEVEL_TYPE: minecraft:normal
+
+      # Название мира
+      LEVEL_NAME: Новыймир
+
+      # Включение whitelist
+      WHITELIST: "false"
+
+      # Включение режима hardcore
+      HARDCORE: "false"
+
+      # Разрешение PVP
+      PVP: "true"
+
+      # Включение онлайн режима (true - проверка Mojang, false - оффлайн)
+      ONLINE_MODE: "false"
+
+      # Память для JVM (минимум)
+      JVM_XX_MIN_RAM: 1G
+
+      # Память для JVM (максимум)
+      JVM_XX_MAX_RAM: 4G
+
+      # EULA (обязательно: true)
+      EULA: "true"
+
+    ports:
+      - "${SERVER_PORT:-25565}:25565"
+
+    volumes:
+      # Данные мира
+      - ./data/world:/data/world
+      
+      # Конфигурация сервера
+      - ./data/config:/data/config
+      
+      # Моды
+      - ./data/mods:/data/mods
+      
+      # Bans, ops, whitelist файлы (контейнер создаст их сам)
+      - ./data/ops.json:/data/ops.json
+      - ./data/whitelist.json:/data/whitelist.json
+      - ./data/banned-players.json:/data/banned-players.json
+      - ./data/banned-ips.json:/data/banned-ips.json
+
+    # На Windows параметр user вызывает проблемы с правами доступа
+    # user: "${UID:-1000}:${GID:-1000}"
