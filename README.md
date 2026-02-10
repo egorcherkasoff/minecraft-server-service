@@ -71,11 +71,13 @@ SERVER_PORT=25565
 
 ### Настройка памяти
 
-Отредактируйте [`docker-compose.yml`](docker-compose.yml):
-```yaml
-environment:
-  JVM_XX_MIN_RAM: 1G
-  JVM_XX_MAX_RAM: 4G
+Отредактируйте файл [`data/config/jvm_args.txt`](data/config/jvm_args.txt):
+```text
+# Минимальная память
+-Xms1G
+
+# Максимальная память
+-Xmx4G
 ```
 
 ### Настройка сервера
@@ -108,12 +110,13 @@ docker-compose up -d
 ```
 data/
 ├── world/              # Данные мира (сохраняются)
-├── config/             # Конфигурации модов
-├── mods/               # Моды Fabric
-├── ops.json            # Операторы сервера
-├── whitelist.json      # Белый список игроков
-├── banned-players.json # Заблокированные игроки
-└── banned-ips.json     # Заблокированные IP
+├── config/             # Конфигурации сервера и модов
+│   ├── jvm_args.txt    # JVM аргументы (память и т.д.)
+│   ├── ops.json        # Операторы сервера
+│   ├── whitelist.json  # Белый список игроков
+│   ├── banned-players.json # Заблокированные игроки
+│   └── banned-ips.json # Заблокированные IP
+└── mods/               # Моды Fabric
 ```
 
 Все данные сохраняются на хост-машине и не теряются при перезапуске контейнера.
@@ -147,7 +150,7 @@ docker-compose logs
 
 ### Не хватает памяти
 
-Увеличьте `JVM_XX_MAX_RAM` в [`docker-compose.yml`](docker-compose.yml)
+Увеличьте значение `-Xmx` в файле [`data/config/jvm_args.txt`](data/config/jvm_args.txt)
 
 ### Проблемы с правами доступа (Linux)
 
