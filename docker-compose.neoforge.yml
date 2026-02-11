@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  minecraft-neoforge-server:
+    image: rdall96/minecraft-server:1.21.1-neoForged_latest
+    container_name: minecraft-neoforge-server
+    restart: unless-stopped
+    env_file:
+      - .env.neoforge
+    environment:
+      # Тип сервера
+      TYPE: NEOFORGED
+
+      # Сообщение сервера (MOTD)
+      MOTD: Minecraft NeoForge Server
+
+      # Уровень сложности (peaceful, easy, normal, hard)
+      DIFFICULTY: normal
+
+      # Режим игры (survival, creative, adventure, spectator)
+      GAMEMODE: survival
+
+      # Максимальное количество игроков
+      MAX_PLAYERS: 20
+
+      # Мир (seed)
+      LEVEL_SEED: ""
+
+      # Уровень генерации мира
+      LEVEL_TYPE: minecraft:normal
+
+      # Включение whitelist
+      WHITE_LIST: "false"
+
+      # Включение режима hardcore
+      HARDCORE: "false"
+
+      # Разрешение PVP
+      PVP: "true"
+
+      # Включение онлайн режима (true - проверка Mojang, false - оффлайн)
+      ONLINE_MODE: "false"
+
+      # EULA (обязательно: true)
+      EULA: "true"
+
+    ports:
+      - "${SERVER_PORT:-25566}:25565"
+
+    volumes:
+      # Данные мира
+      - ./data-neoforge/world:/minecraft/world
+      
+      # Конфигурация сервера (включая jvm_args.txt)
+      - ./data-neoforge/config:/minecraft/configurations
+      
+      # Моды
+      - ./data-neoforge/mods:/minecraft/mods
+
+    # На Windows параметр user вызывает проблемы с правами доступа
+    # user: "${UID:-1000}:${GID:-1000}"

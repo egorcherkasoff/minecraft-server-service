@@ -1,5 +1,9 @@
 # Minecraft данные
 data/
+data-neoforge/world/
+data-neoforge/config/
+!data-neoforge/config/jvm_args.txt
+data-neoforge/mods/
 *.dat
 *.dat_old
 *.mca
