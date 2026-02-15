@@ -54,6 +54,9 @@ services:
       
       # Моды
       - ./data/mods:/minecraft/mods
+      
+      # KubeJS скрипты
+      - ./data/kubejs:/minecraft/kubejs
 
     # На Windows параметр user вызывает проблемы с правами доступа
     # user: "${UID:-1000}:${GID:-1000}"

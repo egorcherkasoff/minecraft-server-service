@@ -56,6 +56,9 @@ services:
       
       # Моды
       - ./data-neoforge/mods:/minecraft/mods
+      
+      # KubeJS скрипты
+      - ./data-neoforge/kubejs:/minecraft/kubejs
 
     # На Windows параметр user вызывает проблемы с правами доступа
     # user: "${UID:-1000}:${GID:-1000}"

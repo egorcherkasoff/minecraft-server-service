@@ -110,6 +110,62 @@ docker-compose down
 docker-compose up -d
 ```
 
+## KubeJS скрипты
+
+Проект поддерживает использование KubeJS - мода для написания скриптов на JavaScript для модификации игры.
+
+### Установка KubeJS для Fabric
+
+1. Скачайте мод KubeJS для Fabric: https://www.curseforge.com/minecraft/mc-mods/kubejs
+2. Поместите `.jar` файл в директорию `data/mods/`
+3. Перезапустите сервер
+
+### Использование KubeJS скриптов для Fabric
+
+Скрипты KubeJS для Fabric сервера находятся в директории `data/kubejs/`:
+
+```
+data/kubejs/
+├── server_scripts/    # Серверные скрипты (основная директория)
+├── startup_scripts/    # Скрипты запуска модов
+├── data/               # Данные KubeJS
+└── config/             # Конфигурация KubeJS
+```
+
+1. Создайте новый файл `.js` в директории `data/kubejs/server_scripts/`
+2. Напишите ваш скрипт на JavaScript
+3. Перезапустите сервер для применения изменений
+
+Пример скрипта находится в файле `data/kubejs/server_scripts/example.js`.
+
+### Установка KubeJS для NeoForge
+
+1. Скачайте мод KubeJS для NeoForge: https://www.curseforge.com/minecraft/mc-mods/kubejs
+2. Поместите `.jar` файл в директорию `data-neoforge/mods/`
+3. Перезапустите сервер
+
+### Использование KubeJS скриптов для NeoForge
+
+Скрипты KubeJS для NeoForge сервера находятся в директории `data-neoforge/kubejs/`:
+
+```
+data-neoforge/kubejs/
+├── server_scripts/    # Серверные скрипты (основная директория)
+├── startup_scripts/    # Скрипты запуска модов
+├── data/               # Данные KubeJS
+└── config/             # Конфигурация KubeJS
+```
+
+1. Создайте новый файл `.js` в директории `data-neoforge/kubejs/server_scripts/`
+2. Напишите ваш скрипт на JavaScript
+3. Перезапустите сервер для применения изменений
+
+Пример скрипта находится в файле `data-neoforge/kubejs/server_scripts/example.js`.
+
+### Документация KubeJS
+
+Подробная документация по KubeJS: https://kubejs.com/
+
 ## Запуск NeoForge сервера 1.21.1
 
 Помимо Fabric сервера, проект поддерживает запуск NeoForge сервера версии 1.21.1.
@@ -217,7 +273,12 @@ data/
 │   ├── whitelist.json  # Белый список игроков
 │   ├── banned-players.json # Заблокированные игроки
 │   └── banned-ips.json # Заблокированные IP
-└── mods/               # Моды Fabric
+├── mods/               # Моды Fabric
+└── kubejs/             # Скрипты KubeJS
+    ├── server_scripts/ # Серверные скрипты
+    ├── startup_scripts/ # Скрипты запуска
+    ├── data/           # Данные KubeJS
+    └── config/         # Конфигурация KubeJS
 ```
 
 ### NeoForge сервер (1.21.1)
@@ -227,7 +288,12 @@ data-neoforge/
 ├── world/              # Данные мира (сохраняются)
 ├── config/             # Конфигурации сервера и модов
 │   └── jvm_args.txt    # JVM аргументы (память и т.д.)
-└── mods/               # Моды NeoForge
+├── mods/               # Моды NeoForge
+└── kubejs/             # Скрипты KubeJS
+    ├── server_scripts/ # Серверные скрипты
+    ├── startup_scripts/ # Скрипты запуска
+    ├── data/           # Данные KubeJS
+    └── config/         # Конфигурация KubeJS
 ```
 
 Все данные сохраняются на хост-машине и не теряются при перезапуске контейнера.
